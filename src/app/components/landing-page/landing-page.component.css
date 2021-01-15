@@ -1,6 +1,6 @@
 .main-page{
   height: 100%;
-  background-image: url("../../assets/background-images/landing-page-background.jpg");
+  background-image: url("../../../assets/background-images/test.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -9,12 +9,14 @@
 .content{
   position: absolute;
   left: 50%;
-  top: 20%;
+  top: 50%;
   transform: translate(-50%, -50%);
-  background: white;
-  width: 50%;
+  background-color: #171723;
+  width: 40%;
+  display: flex;
 }
 
-.banner{
-  background-color: #303030;
+.forms{
+  background-color: white;
+  height: 400px;
 }

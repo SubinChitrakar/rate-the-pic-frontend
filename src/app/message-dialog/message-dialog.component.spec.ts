@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LandingPageComponent } from './landing-page.component';
+import { MessageDialogComponent } from './message-dialog.component';
 
-describe('LandingPageComponent', () => {
-  let component: LandingPageComponent;
-  let fixture: ComponentFixture<LandingPageComponent>;
+describe('MessageDialogComponent', () => {
+  let component: MessageDialogComponent;
+  let fixture: ComponentFixture<MessageDialogComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LandingPageComponent ]
+      declarations: [ MessageDialogComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(LandingPageComponent);
+    fixture = TestBed.createComponent(MessageDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

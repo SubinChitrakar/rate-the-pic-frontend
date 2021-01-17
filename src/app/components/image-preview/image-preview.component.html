@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-7">
+    <div class="image-wrapper">
+      <img class="preview-image" [src]="imageModel.imageUrl">
+      <span>{{imageModel.imageName}}</span>
+    </div>
+  </div>
+  <div class="col=5">
+    <div class="rating-wrapper">
+      <mat-card class="full-width">
+        <div class="rating-bar-wrapper">
+          <mat-label><strong [ngClass]="{
+                  'text-dark': averageRating == 0,
+                  'text-success': averageRating > 5,
+                  'text-danger': averageRating < 6
+                }">Average Rating:</strong> {{averageRating }} </mat-label>
+          <mat-progress-bar class="rating-bar" mode="determinate" [value]="averageBarValue"></mat-progress-bar>
+        </div>
+      </mat-card>
+    </div>
+
+    <div class="comment-wrapper">
+      <mat-card class="full-width">
+        <div *ngFor="let comment of commentInfo">
+          <div class="comment-info-wrapper">
+            <div class="comment-desc">
+              <div class="date-info">
+                <p class="comment-date">{{comment.commentDate | date: 'medium'}}</p>
+              </div>
+              <div class="comment-info">
+                <p><strong [ngClass]="{
+                  'text-success': comment.rating > 5,
+                  'text-danger': comment.rating < 6
+                }">Rating: </strong>
+                  <i class="far" [ngClass]="{
+                  'fa-thumbs-up': comment.rating > 5,
+                  'fa-thumbs-down': comment.rating < 6
+                }"></i></p>
+                <p><strong>{{comment.userEmail}}: </strong>
+                  <span *ngIf="comment.commentDetails">{{comment.commentDetails}}</span>
+                  <span *ngIf="!comment.commentDetails">No Comments</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+
+
+    <div class="buttons">
+      <button (click)="onNoClick()" class="func-button" mat-flat-button color="primary"><i class="far fa-check-square"></i> DONE</button>
+      <button (click)="deleteImage()" class="func-button" mat-flat-button color="warn"><i class="far fa-trash-alt"></i> DELETE</button>
+    </div>
+  </div>
+</div>

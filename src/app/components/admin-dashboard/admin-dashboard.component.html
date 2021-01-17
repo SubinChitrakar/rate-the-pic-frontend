@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 remove-padding">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="logo-wrapper" href="/admin-dashboard"><img class="nav-logo" alt="logo" src="../../../assets/logo.png"></a>
+        <div class="clearfix"></div>
+      </nav>
+    </div>
+  </div>
+
+  <div class="row upload-image-wrapper">
+    <div class="col-12">
+      <form class="float-right" [formGroup]="fileUploadForm" (ngSubmit)="onSubmit()" enctype="multipart/form-data">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-6">
+              <input type="file"  accept="image/*" class="form-control-file file-margin" name="uploadedImage"
+                     (change)="onFileSelect($event)" #UploadFileInput >
+            </div>
+            <div class="col-6">
+              <button [disabled]="!fileInputLabel" mat-raised-button color="primary">UPLOAD</button>
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <app-gallery></app-gallery>
+    </div>
+  </div>
+</div>

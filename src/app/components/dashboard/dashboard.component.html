@@ -1,0 +1,98 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 remove-padding">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="logo-wrapper" href="/dashboard/{{userId}}"><img class="nav-logo" alt="logo"
+                                                                  src="../../../assets/logo.png"></a>
+        <div class="clearfix"></div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid content-wrapper">
+  <div class="row">
+    <div class="col-9">
+      <mat-card class="card-wrapper">
+        <h1><strong>Post of the Day</strong></h1>
+        <div class="row">
+          <div class="col-7">
+            <div class="image-wrapper">
+              <img [src]="imageModel.imageUrl">
+            </div>
+          </div>
+          <div class="col-5">
+            <div class="form-contents">
+              <h2><strong>Please Share your Thoughts</strong></h2>
+              <form class="rating-form" #ratingForm="ngForm" (ngSubmit)="onSubmit(ratingForm.value)" novalidate>
+                <mat-form-field class="rating-full-width">
+                  <mat-label>Comment</mat-label>
+                  <textarea matInput (ngModel)="comment" #comment maxlength="100"
+                            placeholder="Ex. The picture reminds me of..." name="comment"></textarea>
+                  <mat-hint align="start"><strong>Write something about the picture</strong></mat-hint>
+                  <mat-hint align="end">{{comment.value.length}} / 100</mat-hint>
+                </mat-form-field>
+
+                <div class="rating-wrapper">
+                  <div class="float-left slider-wrapper">
+                    <mat-slider
+                      thumbLabel
+                      [displayWith]="formatLabel"
+                      [value]="commentModel.rating"
+                      min="0"
+                      max="10"
+                      (change)="sliderValue($event)"></mat-slider>
+                  </div>
+                  <mat-label class="float-left rating-label" id="rating-label">Rate the Picture</mat-label>
+                  <div class="error-message text-danger" id="error-message">Rating is required</div>
+                </div>
+
+                <button class="float-right comment-btn" mat-raised-button color="primary">Comment</button>
+
+                <div class="clearfix"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+    <div class="col-3">
+      <mat-card>
+        <div class="comments">
+          <h1 class="recent-comment"><strong>Recent Comments</strong></h1>
+
+          <div *ngFor="let comment of commentsModel">
+            <a class="link" (click)="removeOnClick()" href="#">
+              <div class="comment-wrapper">
+                <div class="comment-info-wrapper">
+                  <div class="comments-info">
+                    <strong [ngClass]="{
+                  'text-success': comment.rating > 5,
+                  'text-danger': comment.rating < 6
+                }">Rating: </strong><i class="far" [ngClass]="{
+                  'fa-thumbs-up': comment.rating > 5,
+                  'fa-thumbs-down': comment.rating < 6
+                }"></i>
+                    <p *ngIf="comment.commentDetails"><strong>Comment: </strong>{{comment.commentDetails}}</p>
+                  </div>
+
+                  <div>
+                    <img class="commented-image" [src]="comment.image.imageUrl">
+                  </div>
+                </div>
+
+                <div style="clear:both"></div>
+
+                <div>
+                  <p class="comment-date">{{comment.commentDate|date: 'medium'}}</p>
+                </div>
+
+                <div class="clearfix"></div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

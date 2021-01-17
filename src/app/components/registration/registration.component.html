@@ -34,6 +34,6 @@
     </mat-error>
   </mat-form-field>
 
-  <button class="register-btn" mat-raised-button color="primary">Register</button>
+  <button [disabled]="!user.email || !user.password || !user.confirmPassword" class="register-btn" mat-raised-button color="primary">Register</button>
 </form>
 

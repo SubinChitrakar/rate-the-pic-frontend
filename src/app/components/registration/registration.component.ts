@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, Validators} from '@angular/forms';
-import {User} from '../../model/user';
+import {UserModel} from '../../model/userModel';
 import {MyErrorStateMatcher} from '../../app.component';
 import {UserService} from '../../service/user.service';
 import {EncryptService} from '../../service/encrypt.service';
 import {MatDialog} from '@angular/material/dialog';
-import {MessageDialogComponent, MessageDialogModel} from '../../message-dialog/message-dialog.component';
+import {MessageDialogComponent, MessageDialogModel} from '../message-dialog/message-dialog.component';
 
 @Component({
   selector: 'app-registration',
@@ -14,7 +14,7 @@ import {MessageDialogComponent, MessageDialogModel} from '../../message-dialog/m
 })
 
 export class RegistrationComponent implements OnInit{
-  user: User;
+  user: UserModel;
   emailFormControl: FormControl;
   passwordFormControl: FormControl;
   passwordConfirmFormControl: FormControl;
@@ -24,7 +24,7 @@ export class RegistrationComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.user = new User('', '', '');
+    this.user = new UserModel('', '', '');
     this.emailFormControl = new FormControl('', [Validators.required, Validators.email]);
     this.passwordFormControl = new FormControl('', [Validators.required, Validators.pattern('^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{8,20}$')]);
     this.passwordConfirmFormControl = new FormControl('', [Validators.required]);
@@ -32,11 +32,11 @@ export class RegistrationComponent implements OnInit{
   }
 
   onSubmit(): void{
-    const newUser = new User(this.user.email, this._encryptService.encryptPassword('digital123.!!!', this.user.password), '');
+    const newUser = new UserModel(this.user.email, this._encryptService.encryptPassword('digital123.!!!', this.user.password), '');
     this._registrationService.register(newUser)
       .subscribe(
         data => {
-          if (data.message === 'Existing User'){
+          if (data.message === 'Existing UserModel'){
             this.openDialog(data.message, 'A user for this email has already been created.', true);
             this.user.password = null;
             this.user.confirmPassword = null;

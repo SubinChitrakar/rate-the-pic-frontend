@@ -1,0 +1,10 @@
+<div class="gallery-wrapper">
+  <div *ngFor="let image of images" style="float: left">
+    <div class="image-wrapper">
+      <a (click)="openDialog(image)" href="#">
+        <img [src] = "image.imageUrl">
+        <span>{{image.imageName}}</span>
+      </a>
+    </div>
+  </div>
+</div>

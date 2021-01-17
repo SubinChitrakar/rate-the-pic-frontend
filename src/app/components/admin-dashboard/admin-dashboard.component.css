@@ -1,0 +1,24 @@
+.remove-padding{
+  padding: 0;
+}
+
+nav{
+  background-color: #96c5fd;
+}
+
+.logo-wrapper{
+  width: 80px;
+  height: 80px;
+}
+
+.nav-logo{
+  width: 100%;
+}
+
+.upload-image-wrapper{
+  margin: 10px auto;
+}
+
+.file-margin{
+  margin: 7px auto;
+}
